@@ -1,5 +1,7 @@
-# podspec_dependency_versioning plugin
+# podspec_dependency_versioning fastlane plugin
 
+[![License](https://img.shields.io/github/license/Coledunsby/fastlane-plugin-podspec-dependency-versioning.svg)](https://github.com/Coledunsby/fastlane-plugin-podspec-dependency-versioning/blob/master/LICENSE)
+[![Gem](https://img.shields.io/gem/v/fastlane-plugin-podspec-dependency-versioning.svg?style=flat)](http://rubygems.org/gems/fastlane-plugin-podspec-dependency-versioning)
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-podspec_dependency_versioning)
 
 ## Getting Started
@@ -12,27 +14,18 @@ fastlane add_plugin podspec_dependency_versioning
 
 ## About podspec_dependency_versioning
 
-Edit the versions of your podspec dependencies
+Extends fastlane versioning options. Allows you to edit the versions of dependencies in podspecs.
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+## Actions
 
-## Example
+### change_podspec_dependency_version
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
-
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
-
-## Run tests for this plugin
-
-To run both the tests, and code style validation, run
-
-```
-rake
-```
-
-To automatically fix many of the styling issues, use
-```
-rubocop -a
+```ruby
+change_podspec_dependency_version(
+    podspec: "Nitrous.podspec",    # The path of the podspec to modify
+    dependency: "RxSwift",         # The dependency in the podspec to modify
+    version: "~> 4.2.0"            # The version to set the dependency to
+)
 ```
 
 ## Issues and Feedback
