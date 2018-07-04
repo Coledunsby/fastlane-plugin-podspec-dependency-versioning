@@ -1,9 +1,9 @@
 require 'fastlane/action'
-require_relative '../helper/podspec_dependency_versioning_helper'
+require_relative '../helper/change_podspec_dependency_version_helper'
 
 module Fastlane
     module Actions
-        class PodspecDependencyVersioningAction < Action
+        class ChangePodspecDependencyVersionAction < Action
             def self.run(params)
                 podspec = params[:podspec]
                 dependency = params[:dependency]

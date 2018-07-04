@@ -4,7 +4,7 @@ module Fastlane
   UI = FastlaneCore::UI unless Fastlane.const_defined?("UI")
 
   module Helper
-    class PodspecDependencyVersioningHelper
+    class ChangePodspecDependencyVersionHelper
       # class methods that you define here become available in your action
       # as `Helper::PodspecDependencyVersioningHelper.your_method`
       #
