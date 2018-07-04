@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'coledunsby@gmail.com'
 
   spec.summary       = 'Edit the versions of your podspec dependencies'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-podspec_dependency_versioning"
+  spec.homepage      = "https://github.com/Coledunsby/fastlane-plugin-podspec-dependency-versioning"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
