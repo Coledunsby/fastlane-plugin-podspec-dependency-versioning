@@ -2,46 +2,69 @@ require 'fastlane/action'
 require_relative '../helper/podspec_dependency_versioning_helper'
 
 module Fastlane
-  module Actions
-    class PodspecDependencyVersioningAction < Action
-      def self.run(params)
-        UI.message("The podspec_dependency_versioning plugin is working!")
-      end
+    module Actions
+        class PodspecDependencyVersioningAction < Action
+            def self.run(params)
+                podspec_path = params[:podspec]
+                dependency = params[:dependency]
+                version = params[:version]
 
-      def self.description
-        "Edit the versions of your podspec dependencies"
-      end
+                podspec_contents = File.read(podspec_path)
+                podspec_new_contents = podspec_contents.gsub(/(?<=s\.dependency '#{dependency}', ')(.*)(?=')/, version_number)
 
-      def self.authors
-        ["Cole Dunsby"]
-      end
+                unless podspec_contents == podspec_new_contents
+                    File.open(podspec_path, "w") { |file| file.puts podspec_new_contents }
+                    UI.success("successfully modified #{dependency} to version #{version} in #{podspec}")
+                else
+                    UI.error("could not find #{dependency} in #{podspec}")
+                end
+            end
 
-      def self.return_value
-        # If your method provides a return value, you can describe here what it does
-      end
+            def self.description
+                "This action will modify the version of a dependency in your podspec."
+            end
 
-      def self.details
-        # Optional:
-        "Edit the versions of your podspec dependencies"
-      end
+            def self.authors
+                ["Cole Dunsby"]
+            end
 
-      def self.available_options
-        [
-          # FastlaneCore::ConfigItem.new(key: :your_option,
-          #                         env_name: "PODSPEC_DEPENDENCY_VERSIONING_YOUR_OPTION",
-          #                      description: "A description of your option",
-          #                         optional: false,
-          #                             type: String)
-        ]
-      end
+            def self.return_value
 
-      def self.is_supported?(platform)
-        # Adjust this if your plugin only works for a particular platform (iOS vs. Android, for example)
-        # See: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
-        #
-        # [:ios, :mac, :android].include?(platform)
-        true
-      end
+            end
+
+            def self.details
+                "This action will modify the version of a dependency in your podspec."
+            end
+
+            def self.available_options
+                [
+                    FastlaneCore::ConfigItem.new(
+                        key: :podspec,
+                        env_name: "PODSPEC_PATH",
+                        description: "The path of the podspec you wish to modify",
+                        optional: false,
+                        type: String
+                    ),
+                    FastlaneCore::ConfigItem.new(
+                        key: :dependency,
+                        env_name: "DEPENDENCY_NAME",
+                        description: "The dependency you wish to modify",
+                        optional: false,
+                        type: String
+                    ),
+                    FastlaneCore::ConfigItem.new(
+                        key: :version,
+                        env_name: "DEPENDENCY_VERSION",
+                        description: "The new version to assign to the dependency",
+                        optional: false,
+                        type: String
+                    )
+                ]
+            end
+
+            def self.is_supported?(platform)
+                true
+            end
+        end
     end
-  end
 end
