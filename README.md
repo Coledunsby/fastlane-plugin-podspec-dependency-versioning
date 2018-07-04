@@ -1,7 +1,7 @@
 # podspec_dependency_versioning fastlane plugin
 
 [![License](https://img.shields.io/github/license/Coledunsby/fastlane-plugin-podspec-dependency-versioning.svg)](https://github.com/Coledunsby/fastlane-plugin-podspec-dependency-versioning/blob/master/LICENSE)
-[![Gem](https://img.shields.io/gem/v/fastlane-plugin-podspec-dependency-versioning.svg?style=flat)](http://rubygems.org/gems/fastlane-plugin-podspec-dependency-versioning)
+[![Gem](https://img.shields.io/gem/v/fastlane-plugin-podspec_dependency_versioning.svg?style=flat)](http://rubygems.org/gems/fastlane-plugin-podspec_dependency_versioning)
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-podspec_dependency_versioning)
 
 ## Getting Started
