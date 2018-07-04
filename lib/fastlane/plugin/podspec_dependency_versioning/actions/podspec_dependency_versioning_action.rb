@@ -5,18 +5,18 @@ module Fastlane
     module Actions
         class PodspecDependencyVersioningAction < Action
             def self.run(params)
-                podspec_path = params[:podspec]
+                podspec = params[:podspec]
                 dependency = params[:dependency]
                 version = params[:version]
 
-                podspec_contents = File.read(podspec_path)
-                podspec_new_contents = podspec_contents.gsub(/(?<=s\.dependency '#{dependency}', ')(.*)(?=')/, version_number)
+                podspec_contents = File.read(podspec)
+                podspec_new_contents = podspec_contents.gsub(/(?<=s\.dependency ["']#{dependency}["'], ["'])(.*)(?=["'])/, version)
 
                 unless podspec_contents == podspec_new_contents
-                    File.open(podspec_path, "w") { |file| file.puts podspec_new_contents }
+                    File.open(podspec, "w") { |file| file.puts podspec_new_contents }
                     UI.success("successfully modified #{dependency} to version #{version} in #{podspec}")
                 else
-                    UI.error("could not find #{dependency} in #{podspec}")
+                    UI.error("#{dependency} not present or doesn't have an explicit version in #{podspec}")
                 end
             end
 
